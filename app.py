@@ -33,6 +33,7 @@ def sendMessage(bot_id, text):
         "bot_id": bot_id,
         "text": text
     }
+    print(messageData)
     response = requests.post(messageUrl, data=messageData)
     print(response.json())
     print('this got her 2')
