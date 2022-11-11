@@ -20,6 +20,7 @@ def webhook():
     # We don't want to reply to ourselves!
     if data['name'] != 'Fuck Jon':
         msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+        print(os.getenv('GROUPME_BOT_ID'))
         sendMessage(os.getenv('GROUPME_BOT_ID').replace('\n', ''), msg)
     print(data)
 
