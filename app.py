@@ -18,7 +18,7 @@ def webhook():
     data = request.get_json()
 
     # We don't want to reply to ourselves!
-    if data['sender_id'] == '51724392':
+    if data['sender_id'] == os.getenv('SENDER_ID'):
         msg = 'Fuck You Jon!'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
 
