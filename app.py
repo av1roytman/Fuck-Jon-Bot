@@ -28,11 +28,13 @@ def webhook():
 
 
 def sendMessage(bot_id, text):
+    print('this got here')
     messageData = {
         "bot_id": bot_id,
         "text": text
     }
     requests.post(messageUrl, data=messageData)
+    print('this got her 2')
 
 
 if __name__ == '__main__':
