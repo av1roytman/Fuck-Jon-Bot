@@ -16,28 +16,23 @@ def hello():
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
+    print(data)
 
     # We don't want to reply to ourselves!
     if data['name'] != 'Fuck Jon':
         msg = 'Hello you!'
-        print(os.getenv('GROUPME_BOT_ID'))
         sendMessage(os.getenv('GROUPME_BOT_ID').replace('\n', ''), msg)
-    print(data)
 
     return "ok", 200
 
 
 def sendMessage(bot_id, text):
-    print('this got here')
-    print(bot_id)
     messageData = {
         "bot_id": bot_id,
         "text": text
     }
-    print(messageData)
+
     response = requests.post(messageUrl, json=messageData)
-    print(response.json())
-    print('this got her 2')
 
 
 if __name__ == '__main__':
