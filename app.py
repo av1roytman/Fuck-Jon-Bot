@@ -19,7 +19,7 @@ def webhook():
 
     # We don't want to reply to ourselves!
     if data['sender_id'] == os.getenv('SENDER_ID'):
-        msg = 'Fuck You Jon!'
+        msg = 'Stop Talking Jon! Shut The Fuck Up!'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
 
     return "ok", 200
