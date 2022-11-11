@@ -1,9 +1,6 @@
 import os
-import json
 import requests
 
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 
 from flask import Flask, request
 
@@ -25,7 +22,6 @@ def webhook():
     if data['name'] != 'Fuck Jon':
         msg = '{}, you sent "{}".'.format(data['name'], data['text'])
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    # sendMessage('dc4082fa5dea7d3a200cc69f08', 'hi')
 
     return "ok", 200
 
