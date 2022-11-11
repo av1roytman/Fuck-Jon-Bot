@@ -22,10 +22,10 @@ def webhook():
     data = request.get_json()
 
     # We don't want to reply to ourselves!
-    # if data['name'] != 'Fuck Jon':
-    #     msg = '{}, you sent "{}".'.format(data['name'], data['text'])
-        # sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    sendMessage('dc4082fa5dea7d3a200cc69f08', 'hi')
+    if data['name'] != 'Fuck Jon':
+        msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
+    # sendMessage('dc4082fa5dea7d3a200cc69f08', 'hi')
 
     return "ok", 200
 
@@ -35,7 +35,7 @@ def sendMessage(bot_id, text):
         "bot_id": bot_id,
         "text": text
     }
-    requests.post(messageUrl, json=messageData)
+    requests.post(messageUrl, data=messageData)
 
 
 if __name__ == '__main__':
