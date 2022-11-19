@@ -39,7 +39,7 @@ def sendMessage(bot_id, text):
 
 # /groups/:group_id/members/:membership_id/remove
 def removeUser(group_id, membership_id):
-    removeUrl = baseUrl + '/groups/:' + group_id + '/members/:' + membership_id + '/remove'
+    removeUrl = baseUrl + '/groups/:' + group_id + '/members/:' + membership_id + '/remove' + '?token=' + os.getenv('ACCESS_TOKEN')
     print(removeUrl)
     response = requests.post(removeUrl)
     print(response.json())
