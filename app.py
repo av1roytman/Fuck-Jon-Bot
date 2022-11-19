@@ -1,6 +1,7 @@
 import json
 import os
 import time
+import re
 
 import requests
 
@@ -27,7 +28,7 @@ def webhook():
     # if data['sender_id'] == os.getenv('SENDER_ID'):
     #     msg = 'Didn\'t you Graduate?'
     #     sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    if data['text'].lower() == 'remove myself':
+    if re.match(r'remove\smyself', data['text'].lower()):
         msg = 'Get Fucked Cuh'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
         time.sleep(2)
