@@ -17,6 +17,7 @@ def hello():
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
+    print(data)
 
     # We don't want to reply to ourselves!
     if data['sender_id'] == os.getenv('SENDER_ID'):
