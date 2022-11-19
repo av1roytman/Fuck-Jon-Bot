@@ -24,7 +24,7 @@ def webhook():
     data = request.get_json()
     print(data)
 
-    if re.match(r'@\smod', data['text'].lower()):
+    if re.match(r'@mod', data['text'].lower()):
         msg = 'Don\'t @ the Mod Bitch'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
         time.sleep(2)
