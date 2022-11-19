@@ -27,7 +27,7 @@ def webhook():
     # if data['sender_id'] == os.getenv('SENDER_ID'):
     #     msg = 'Didn\'t you Graduate?'
     #     sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    if data['text'] == 'Remove Myself':
+    if data['text'].lower() == 'remove myself':
         msg = 'Get Fucked Cuh'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
         time.sleep(2)
