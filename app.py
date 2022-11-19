@@ -25,8 +25,8 @@ def webhook():
     if data['sender_id'] == os.getenv('SENDER_ID'):
         msg = 'Didn\'t you Graduate?'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    if data['text'] == 'Remove Omar':
-        removeUser(group_id=data['group_id'], membership_id='829987163')
+    if data['text'] == 'Remove Myself':
+        removeUser(group_id=data['group_id'], user_id=data['sender_id'])
 
     return "ok", 200
 
@@ -41,9 +41,9 @@ def sendMessage(bot_id, text):
 
 
 # /groups/:group_id/members/:membership_id/remove
-def removeUser(group_id, membership_id):
-    member_id = getMemberId(group_id, 123)
-    removeUrl = baseUrl + '/groups/' + group_id + '/members/' + membership_id + '/remove' + tokenEnding
+def removeUser(group_id, user_id):
+    member_id = getMemberId(group_id, user_id)
+    removeUrl = baseUrl + '/groups/' + group_id + '/members/' + member_id + '/remove' + tokenEnding
     print(removeUrl)
     response = requests.post(removeUrl)
     print(response.json())
@@ -52,7 +52,10 @@ def removeUser(group_id, membership_id):
 def getMemberId(group_id, user_id):
     response = requests.get(baseUrl + '/groups/' + group_id + tokenEnding)
     response = response.json()
-    print(response)
+    for member in response['members']:
+        if member['user_id'] == user_id:
+            return member['id']
+    return None
 
 
 
