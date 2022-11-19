@@ -24,6 +24,9 @@ def webhook():
     data = request.get_json()
     print(data)
 
+    if re.match(r'zirkle', data['text'].lower()):
+        msg = 'Please do not talk negatively of the Mesiah Zirkle Himself'
+        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
     if re.match(r'@mod', data['text'].lower()):
         msg = 'Don\'t @ the Mod Bitch'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
