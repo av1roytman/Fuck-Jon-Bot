@@ -1,3 +1,4 @@
+import json
 import os
 import requests
 
@@ -5,6 +6,7 @@ from flask import Flask, request
 
 messageUrl = 'https://api.groupme.com/v3/bots/post'
 baseUrl = 'https://api.groupme.com/v3'
+tokenEnding = '?token=' + os.getenv('ACCESS_TOKEN')
 
 app = Flask(__name__)
 
@@ -40,10 +42,19 @@ def sendMessage(bot_id, text):
 
 # /groups/:group_id/members/:membership_id/remove
 def removeUser(group_id, membership_id):
-    removeUrl = baseUrl + '/groups/' + group_id + '/members/' + membership_id + '/remove' + '?token=' + os.getenv('ACCESS_TOKEN')
+    member_id = getMemberId(group_id, 123)
+    removeUrl = baseUrl + '/groups/' + group_id + '/members/' + membership_id + '/remove' + tokenEnding
     print(removeUrl)
     response = requests.post(removeUrl)
     print(response.json())
+
+
+def getMemberId(group_id, user_id):
+    response = requests.get(baseUrl + '/groups/' + group_id + tokenEnding)
+    response = response.json()
+    print(response)
+
+
 
 
 if __name__ == '__main__':
