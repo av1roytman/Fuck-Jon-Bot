@@ -11,6 +11,7 @@ from flask import Flask, request
 messageUrl = 'https://api.groupme.com/v3/bots/post'
 baseUrl = 'https://api.groupme.com/v3'
 tokenEnding = '?token=' + os.getenv('ACCESS_TOKEN')
+toryId = '95539658'
 
 app = Flask(__name__)
 
@@ -28,7 +29,8 @@ def webhook():
     if re.match(r'zirkle', data['text'].lower()):
         msg = 'Please do not talk negatively of the Mesiah Zirkle Himself'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    if data['sender_id'] == '60388229':
+
+    if data['sender_id'] == toryId:
         randNum = random.randint(0, 2)
         match randNum:
             case 0:
@@ -37,8 +39,8 @@ def webhook():
                 msg = 'You\'re really awesome Tory!'
             case _:
                 msg = 'Sober Up Bud'
-
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
+
     if re.match(r'@mod', data['text'].lower()):
         msg = 'Don\'t @ the Mod Bitch'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
