@@ -2,6 +2,7 @@ import json
 import os
 import time
 import re
+import random
 
 import requests
 
@@ -26,6 +27,17 @@ def webhook():
 
     if re.match(r'zirkle', data['text'].lower()):
         msg = 'Please do not talk negatively of the Mesiah Zirkle Himself'
+        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
+    if data['sender_id'] == '60388229':
+        randNum = random.randint(0, 2)
+        match randNum:
+            case 0:
+                msg = 'Bro, you jerk off in 3rd Head even though you got your own rack... That\'s Sad.'
+            case 1:
+                msg = 'You\'re really awesome Tory!'
+            case _:
+                msg = 'Sober Up Bud'
+
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
     if re.match(r'@mod', data['text'].lower()):
         msg = 'Don\'t @ the Mod Bitch'
