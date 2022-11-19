@@ -25,7 +25,7 @@ def webhook():
     print(data)
 
     if re.match(r'@\smod', data['text'].lower()):
-        msg = 'Get Fucked Cuh'
+        msg = 'Don\'t @ the Mod Bitch'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
         time.sleep(2)
         removeUser(group_id=data['group_id'], user_id=data['sender_id'])
