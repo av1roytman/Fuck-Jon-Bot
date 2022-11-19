@@ -24,11 +24,7 @@ def webhook():
     data = request.get_json()
     print(data)
 
-    # We don't want to reply to ourselves!
-    # if data['sender_id'] == os.getenv('SENDER_ID'):
-    #     msg = 'Didn\'t you Graduate?'
-    #     sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    if re.match(r'remove\smyself', data['text'].lower()):
+    if re.match(r'@\smod', data['text'].lower()):
         msg = 'Get Fucked Cuh'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
         time.sleep(2)
