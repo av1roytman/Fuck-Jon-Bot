@@ -23,7 +23,7 @@ def webhook():
         msg = 'Didn\'t you Graduate?'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
     if data['text'] == 'Remove Omar':
-        removeUser(group_id=data['group_id'], membership_id=data['user_id'])
+        removeUser(group_id=data['group_id'], membership_id='829987163')
 
     return "ok", 200
 
@@ -39,7 +39,7 @@ def sendMessage(bot_id, text):
 
 # /groups/:group_id/members/:membership_id/remove
 def removeUser(group_id, membership_id):
-    removeUrl = baseUrl + '/groups/:' + group_id + '/members/:' + membership_id + '/remove' + '?token=' + os.getenv('ACCESS_TOKEN')
+    removeUrl = baseUrl + '/groups/' + group_id + '/members/' + membership_id + '/remove' + '?token=' + os.getenv('ACCESS_TOKEN')
     print(removeUrl)
     response = requests.post(removeUrl)
     print(response.json())
