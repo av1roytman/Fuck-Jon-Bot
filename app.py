@@ -22,7 +22,7 @@ def webhook():
     if data['sender_id'] == os.getenv('SENDER_ID'):
         msg = 'Didn\'t you Graduate?'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-    elif data['text'] == 'Remove Omar':
+    if data['text'] == 'Remove Omar':
         removeUser(group_id=data['group_id'], membership_id=data['user_id'])
 
     return "ok", 200
