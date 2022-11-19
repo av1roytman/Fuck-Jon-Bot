@@ -53,7 +53,7 @@ def getMemberId(group_id, user_id):
     response = requests.get(baseUrl + '/groups/' + group_id + tokenEnding)
     response = response.json()
     print(response)
-    for member in response['members']:
+    for member in response['response']['members']:
         if member['user_id'] == user_id:
             return member['id']
     return None
