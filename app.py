@@ -1,5 +1,7 @@
 import json
 import os
+import time
+
 import requests
 
 from flask import Flask, request
@@ -22,10 +24,13 @@ def webhook():
     print(data)
 
     # We don't want to reply to ourselves!
-    if data['sender_id'] == os.getenv('SENDER_ID'):
-        msg = 'Didn\'t you Graduate?'
-        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
+    # if data['sender_id'] == os.getenv('SENDER_ID'):
+    #     msg = 'Didn\'t you Graduate?'
+    #     sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
     if data['text'] == 'Remove Myself':
+        msg = 'Get Fucked Cuh'
+        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
+        time.sleep(2)
         removeUser(group_id=data['group_id'], user_id=data['sender_id'])
 
     return "ok", 200
