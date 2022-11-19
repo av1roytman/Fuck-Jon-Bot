@@ -39,7 +39,9 @@ def sendMessage(bot_id, text):
 
 # /groups/:group_id/members/:membership_id/remove
 def removeUser(group_id, membership_id):
-    response = requests.post(baseUrl + '/groups/:' + group_id + '/members/:' + membership_id + '/remove')
+    removeUrl = baseUrl + '/groups/:' + group_id + '/members/:' + membership_id + '/remove'
+    print(removeUrl)
+    response = requests.post(removeUrl)
     print(response.json())
 
 
