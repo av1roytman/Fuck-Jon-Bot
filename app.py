@@ -12,6 +12,7 @@ messageUrl = 'https://api.groupme.com/v3/bots/post'
 baseUrl = 'https://api.groupme.com/v3'
 tokenEnding = '?token=' + os.getenv('ACCESS_TOKEN')
 toryId = '95539658'
+isaacId = '104833868'
 
 app = Flask(__name__)
 
@@ -26,10 +27,6 @@ def webhook():
     data = request.get_json()
     print(data)
 
-    if re.match(r'zirkle', data['text'].lower()):
-        msg = 'Please do not talk negatively of the Mesiah Zirkle Himself'
-        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
-
     if data['sender_id'] == toryId:
         randNum = random.randint(0, 2)
         match randNum:
@@ -39,6 +36,29 @@ def webhook():
                 msg = 'You\'re really awesome Tory!'
             case _:
                 msg = 'Sober Up Bud'
+        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
+    elif data['sender_id'] == isaacId:
+        randNum = random.randint(0, 6)
+        match randNum:
+            case 0:
+                msg = 'I clearly took it too easy on you Isaac...'
+            case 1:
+                msg = 'Man I really miss that Broomstick'
+            case 2:
+                msg = 'Aren\'t you adopted?'
+            case 3:
+                msg = 'The Police are looking for you Isaac'
+            case 4:
+                msg = 'Hawkins called. They found your weed'
+            case 5:
+                msg = 'Uncle Sherwin misses you Isaac'
+            case _:
+                msg = 'Phi Delta Uh...'
+
+        sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
+
+    if re.match(r'zirkle', data['text'].lower()):
+        msg = 'Please do not talk negatively of the Mesiah Zirkle Himself'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
 
     if re.match(r'@mod', data['text'].lower()):
@@ -76,8 +96,6 @@ def getMemberId(group_id, user_id):
         if member['user_id'] == user_id:
             return member['id']
     return None
-
-
 
 
 if __name__ == '__main__':
