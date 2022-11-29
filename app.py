@@ -38,7 +38,7 @@ def webhook():
                 msg = 'Sober Up Bud'
         sendMessage(os.getenv('GROUPME_BOT_ID'), msg)
     elif data['sender_id'] == isaacId:
-        randNum = random.randint(0, 6)
+        randNum = random.randint(0, 12)
         match randNum:
             case 0:
                 msg = 'I clearly took it too easy on you Isaac...'
