@@ -52,6 +52,8 @@ def webhook():
                 msg = 'Hawkins called. They found your weed'
             case 5:
                 msg = 'Uncle Sherwin misses you Isaac'
+            case 6:
+                msg = 'Didn\'t you impregnate that Blind Pig Bartender?'
             case _:
                 msg = 'Phi Delta Uh...'
 
